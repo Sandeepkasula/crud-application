@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Moodle App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body background-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2pel9DpVSpt1qbuf7_YhTNLBQ0pyMc5SG1Q&usqp=CAU";
+background-repeat: no-repeat;></body>
+<nav class="navbar navbar-light" style="background-color:#010005;">
+    <a href="#" class="navbar-brand" style="background-color:#FFCC33;color:#000000;border-width:10px;border-color:#FFCC33;border-style:solid;border-spacing:30px;border-radius: 5px;">Moodle App</a>
+<a href="{% url 'admin:index' %}" class = 'navbar-link btn-lg' style="background-color:#FFCC33;color:#000000;">Admin</a>
+    <a href="{% url 'upload-course' %}" class="navbar-link btn-lg" style="background-color:#FFCC33;color:#000000;">Upload course</a>
+</nav>
+<br>
+{% block content %}
+<div class="card-columns">
+    {% for course in shelf %}
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ course.name }}</h5>
+    <p class="card-text">{{ course.describe }}</p>
+   <center>
+       <a href="update/{{course.id}}" class="btn btn-warning" id = '{{course.id}}'>edit</a>
+       <a href="delete/{{course.id}}" class="btn btn-danger" id = '{{course.id}}'>delete</a>
+    </center>
+    </div>
+  </div>
+</div>
+    {% endfor %}
+</div>
+{% endblock %}
+</body>
+</html>
